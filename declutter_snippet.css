@@ -1,0 +1,388 @@
+/*#region --- Auto Collapse Metadata */
+@media screen and (min-width: 1024px)  {
+    body.toggle-auto-collapse-metadata .view-content {         
+        .metadata-container {             
+            max-height: 2.7rem;             
+            opacity: 0;             
+            overflow: hidden;             
+            transition: max-height 250ms ease-in-out, opacity 250ms;
+            margin-bottom: 0;                     
+       }
+        .metadata-container:hover,
+        .metadata-container:focus-within {
+             max-height: 1000px;
+             opacity: 1;
+             transition: max-height 300ms ease-in-out,
+             opacity 300ms;         
+        }     
+    } 
+}
+
+/*#endregion*/
+
+/*#region --- Clean Embeds All */
+
+/*  Pretty much the `clean-embeds-all.css` and `clean-embeds.css` snippets. 2021-08-24 Matthias C. Hormann (Moonbase59) https://forum.obsidian.md/t/meta-post-common-css-hacks/1978/407 */
+
+body.toggle-clean-embeds-all {         
+
+    /* remove title and the table from the "Metatable" plugin */
+    .markdown-preview-view .markdown-embed-title,
+    .markdown-preview-view .obsidian-metatable {
+    display: none;
+    }
+
+    /* Link icon */
+    .markdown-preview-view .markdown-embed-link,
+    .markdown-preview-view .file-embed-link {
+    top: 0;
+    right: 0;
+    left: unset;
+    text-align: right;
+    border: none;
+    margin: 0;
+    width: 24px;
+    height: 24px;
+    color: var(--text-faint);
+    cursor: pointer;
+    }
+
+    /* for Ars Magna theme and others that change ::before */
+    .markdown-preview-view .markdown-embed-link::before,
+    .markdown-preview-view .file-embed-link::before {
+    display: none;
+    }
+
+    /* Link icon size & hide */
+    .markdown-preview-view .file-embed-link svg,
+    .markdown-preview-view .markdown-embed-link svg {
+    height: 24px;
+    width: 24px;
+    opacity: 0;
+    display: unset;
+    }
+
+    /* show on hover */
+    .markdown-preview-view .markdown-embed:hover .file-embed-link svg,
+    .markdown-preview-view .markdown-embed:hover .markdown-embed-link svg {
+    opacity: 1;
+    }
+
+    /* remove border and scroll */
+    /* unfortunately needs !important for some themes */
+    .markdown-preview-view .markdown-embed,
+    .markdown-preview-view .file-embed {
+    border: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    }
+
+    .markdown-preview-view .markdown-embed-content,
+    .markdown-preview-view .markdown-embed-content > .markdown-preview-view { 
+    max-height: unset;
+    padding: 0 !important; /* !important for "Pisum" theme */
+    margin: 0;
+    border: 0;
+    }
+
+    /* remove <br> between internal embeds */
+    .markdown-preview-section div > br {
+    display: none;
+    }
+
+    /* remove vertical space added by markdown-preview-sizer */
+    div.markdown-preview-sizer.markdown-preview-section {
+    min-height: unset !important;
+    padding-bottom: 0 !important;
+    }
+
+    /* special considerations for printing (PDF export) */
+    @media print {
+
+    /* remove frontmatter box if "Show frontmatter" was enabled */
+    /* Also remove metadata table from "Metatable" plugin */
+    pre.frontmatter,
+    .obsidian-metatable {
+        display: none;
+    }
+    }
+
+    /* add some margin before embed content */
+    .internal-embed .markdown-preview-section {
+        margin-top: 20px;
+    }
+
+} 
+/*#endregion*/
+
+/*#region --- Hide Inactive Scrollbars */
+
+body.toggle-hide-inactive-scrollbars .workspace-leaf-content:not(:hover) ::-webkit-scrollbar-thumb { 
+    visibility: hidden; 
+}
+
+/*#endregion*/
+
+/*#region --- Remove Default Backgrounds */
+
+body.toggle-remove-default-backgrounds {
+
+    .workspace-leaf,
+    .workspace-tab-header-container, 
+    .workspace-ribbon,
+    .workspace-ribbon.side-dock-ribbon.mod-left::before,
+    .mod-fade:not(.mod-at-end):after,
+    .workspace-tab-header,
+    .workspace-leaf-resize-handle,
+    .workspace-split,  
+    .view-header,
+    .view-content,
+    .workspace-sidedock-vault-profile,
+    .titlebar-button-container,
+    .canvas-wrapper,
+    .prompt-input,
+    .prompt-input-container,
+    .prompt-instructions,
+    /* .modal-bg, */
+    .modal-sidebar,
+    .vertical-tab-header,
+    .vertical-tab-content,
+    .community-item,
+    .workspace .mod-root .workspace-tab-header,
+    .workspace-split.mod-root .workspace-tab-header.is-active::before, .workspace-split.mod-root .workspace-tab-header.is-active::after
+    {
+    box-shadow: none;
+    background: none;
+    background-color: transparent;
+    border-color: transparent;
+    /* background-image: var(--rough-paper-svg) !important; */
+    }
+
+    /*must use !important for these */
+    /* .workspace-leaf, */
+    .workspace-tab-header,
+    .workspace-sidedock-vault-profile,
+    .workspace-split.mod-root .workspace-tab-header.is-active::after,
+    .workspace-split.mod-root .workspace-tab-header.is-active::before
+    {
+    background-color: transparent !important;
+    border-color: transparent  !important;
+    /* background-image: var(--rough-paper-svg) !important; */
+    }
+
+    .internal-embed .markdown-embed .inline-embed .is-loaded {
+    box-shadow: none;
+    background: none;
+    background-color: transparent;
+    border-color: transparent;
+    background-color: transparent !important;
+    border-color: transparent  !important;
+    }
+
+    body {
+    --background-secondary: var(--background-primary) !important;
+    }
+
+}
+
+/*#endregion*/
+
+/*#region --- Vertical File Explorer Buttons */
+
+body.toggle-vertical-file-explorer-buttons {
+
+	.workspace-leaf-content[data-type="file-explorer"] .nav-buttons-container{
+		flex-direction:row;
+		position:absolute;
+		z-index:1;
+		right:0px;
+        top: 20px;
+	}
+
+	.workspace-leaf-content[data-type="file-explorer"] .nav-buttons-container{
+		flex-direction:column;
+		position:absolute;
+		z-index:1;
+		right:0px;
+	}
+    .nav-files-container {
+        margin-right: 32px;
+        /* scroll-padding-block: 2px !important; */
+        /* scrollbar-width: 2px; */
+    }
+
+}
+
+/*#endregion*/
+
+/*#region --- Hide Inactive UI */
+
+/* A lot of this was taken from the Mado miniflow hidden theme settings*/
+
+.workspace-split.mod-horizontal:is(.mod-left-split, .mod-right-split) .workspace-tab-header-container-inner:not(:hover),
+.workspace-leaf-content[data-type="file-explorer"] .nav-buttons-container:not(:hover),
+.sidebar-toggle-button:is(.mod-left, .mod-right):not(:hover),
+.sidebar-toggle-button.mod-left:not(:hover),
+.sidebar-toggle-button.mod-right:not(:hover),
+:is(.side-dock-actions, .side-dock-settings):not(:hover),
+.workspace-split.mod-vertical.mod-root :is(.workspace-tabs:not(.mod-stacked) .workspace-tab-header, .workspace-tab-header-new-tab, .workspace-tab-header-tab-list):not(:hover),
+.workspace-split.mod-vertical.mod-root .view-header:not(:hover),
+.nav-buttons-container:not(:hover),
+.titlebar:not(:hover) {
+    filter: blur(var(--hide-inactive-ui-blur));
+    opacity: var(--hide-inactive-ui-opacity);
+    transition:opacity 0.15s;
+}
+
+/* hide handle visibility when not hovered */
+.workspace-leaf-resize-handle {
+    opacity: 0 !important;
+}
+.workspace-ribbon.side-dock-ribbon.mod-left.is-collapsed {
+    border-color:transparent;
+}
+
+/* remove border-bottom below left-sidebar-toggle button */
+.workspace-ribbon.mod-left:before{
+    border:none;
+}
+
+/* Make spacing to match collapsed left-ribbon-dock */
+body:not(.is-mobile) .workspace:not(.is-right-sidedock-open) .workspace-split.mod-vertical.mod-root{
+    padding-right:var(--ribbon-width);
+}
+/* Make spacing for left side to match the right spacing during pop-out window mode */
+body:not(.is-mobile).is-popout-window .workspace-split.mod-vertical.mod-root{
+    padding-left:var(--ribbon-width);
+}
+.is-mobilebody, .is-mobile .app-container,
+.is-mobile .horizontal-main-container,
+.workspace-ribbon.mod-left.is-collapsed{
+    background:none;
+}
+
+/* Sidebar Padding */
+.hider-sidebar-buttons.mod-macos.is-hidden-frameless:not(.is-popout-window) .workspace .workspace-tabs.mod-top-right-space .workspace-tab-header-container {
+    padding-right: 4px;
+}
+
+/* Sidebar Padding */
+.hider-sidebar-buttons.mod-macos {
+    --frame-left-space: 60px;
+}
+
+/* hide resize handle */
+.workspace-leaf-resize-handle,
+.workspace-ribbon.side-dock-ribbon.mod-left.is-collapsed
+{
+    border: none;
+}
+
+/* padding tabs */
+.hider-tabs .mod-top-left-space .view-header {
+    padding-left: var(--frame-left-space);
+}
+
+
+body:is(:not(.css-settings-manager),.toggle-explorer-indent) .nav-folder > .nav-folder-children{
+    border-inline-start:none;
+    padding-left:16px;
+    margin-left:0;
+}
+
+body:is(:not(.css-settings-manager),.toggle-explorer-collapse) .nav-folder-title .collapse-icon{
+    display:none;
+}
+
+
+body.toggle-hide-status-bar {
+
+    .status-bar {
+        opacity: 0;
+        transition: margin 0.2s, opacity 0.1s;
+    }
+    .status-bar:hover {
+        opacity:1;
+    }
+}
+
+body.toggle-hide-vault-title {
+
+    .workspace-split.mod-left-split .workspace-sidedock-vault-profile {
+        opacity: 0;
+        transition: margin 0.2s, opacity 0.1s;
+    }
+    .workspace-split.mod-left-split .workspace-sidedock-vault-profile:hover {
+        opacity:1;
+    }
+}
+
+
+
+/*#endregion*/
+
+/* @settings
+
+name: Declutter Snippet
+id: declutter-settings
+settings:
+    - 
+        id: toggle-remove-default-backgrounds
+        title: Remove Default Backgrounds
+        type: class-toggle 
+    -
+        id: hide-inactive-ui-settings
+        title: Hide Inactive UI
+        type: heading
+        level: 2
+        collapsed: true    
+    - 
+        id: toggle-hide-inactive-scrollbars
+        title: Hide Inactive Scrollbars
+        type: class-toggle 
+    - 
+        id: toggle-hide-status-bar
+        title: Hide Status Bar
+        type: class-toggle
+    - 
+        id: toggle-hide-vault-title
+        title: Hide Vault Title
+        type: class-toggle
+	- 
+		id: hide-inactive-ui-blur
+		title: Inactive Blur
+		type: variable-number-slider
+		default: 0
+        format: px
+        min: 0
+        max: 10
+        step: 1
+	- 
+		id: hide-inactive-ui-opacity
+		title: Inactive Opacity
+		type: variable-number-slider
+		default: 1.0
+        min: 0.0
+        max: 1.0
+        step: 0.05
+    -
+        id: qol-ui-settings
+        title: Quality of Life Stuff
+        type: heading
+        level: 2
+        collapsed: true    
+    - 
+        id: toggle-auto-collapse-metadata
+        title: Auto-Collapse Metadata Properties
+        type: class-toggle
+    - 
+        id: toggle-clean-embeds-all
+        title: Clean Embeds
+        type: class-toggle
+    - 
+        id: toggle-vertical-file-explorer-buttons
+        title: Vertical File Explorer Buttons
+        type: class-toggle
+*/
+
+
